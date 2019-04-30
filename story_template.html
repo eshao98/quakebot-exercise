@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Quakebot</title>
+</head>
+<body>
+
+    <h1>{{ title }}</h1>
+
+    <p>There were {{ num_quakes }} earthquakes in the last 24 hours, including {{ large_quakes_count }} of magnitude 5.0 or greater.</p>
+    
+    <p>
+    	The previous 24-hour period had {{ num_large_quakes_yesterday }} large earthquakes, 
+    	{% if num_large_quakes_yesterday > large_quakes_count %}
+    		{{ num_large_quakes_yesterday - large_quakes_count }} more than 
+    	{% elif num_large_quakes_yesterday < large_quakes_count %}
+    		{{ large_quakes_count - num_large_quakes_yesterday }} less than 
+    	{% else %}
+    		the same as 
+		{% endif %}
+		the current 24-hour period.
+    </p>
+    
+    <p>The five largest quakes were:</p>
+
+    <ul>
+    {% for quake in large_quakes %}
+    	<li>{{ [quake['properties']['place'], " (", quake['properties']['mag'], ")"]|join("") }}</li>
+	{% endfor %}
+	</ul>
+
+</body>
+</html>

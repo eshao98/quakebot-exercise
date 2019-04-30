@@ -14,7 +14,7 @@ def main():
         if quake['properties']['mag'] >= 5:
             large_quakes.append(quake)
 
-    # TODO: You must create a Jinja template called 'story_template.html'
+    # Creates a Jinja template called 'story_template.html'
     # in the root of this repo that generates the expected output.
     raw_template = story_template()
     t = Template(raw_template)
